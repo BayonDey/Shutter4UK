@@ -1,0 +1,5 @@
+@include('frontend.layouts.header')     
+@include('frontend.layouts.notification')     
+@yield('content')
+@include('frontend.layouts.footer')
+@yield('page-script')

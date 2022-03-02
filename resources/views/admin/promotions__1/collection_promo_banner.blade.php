@@ -1,0 +1,1 @@
+collection_promo_banner
