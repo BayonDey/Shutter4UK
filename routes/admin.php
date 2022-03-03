@@ -379,6 +379,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/quote/details/{id}', 'SubmittedDataController@quote_details')->name('quote_details');
 
         Route::get('/contactus/list', 'SubmittedDataController@contactus_list')->name('contactus_list');
+        Route::get('/contactus/details/{id}', 'SubmittedDataController@contactus_details')->name('contactus_details');
+        
         Route::get('/generate_pdf_single/{flag}/{id}', 'SubmittedDataController@generate_pdf_single')->name('generate_pdf_single');
         Route::post('/generate_csv_submitted', 'SubmittedDataController@generate_csv_submitted')->name('generate_csv_submitted');
    

@@ -78,7 +78,8 @@
                                         <td title="{{ date('d-m-Y H:i', strtotime($rowData->created_date)) }}">
                                             {{ date('d-m-Y', strtotime($rowData->created_date)) }}
                                         </td>
-                                        <td>{{ $rowData->ref_id }}</td>
+                                        <td><a href="{{route('quote_details',$rowData->id)}}">{{ $rowData->ref_id }}</a></td>
+
                                         <td>{{ ($rowData->department_name == '') ? 'Office Shutters UK' : $rowData->department_name }}</td>
                                         <td>{{ $rowData->gq_title." ".$rowData->gq_firstname." ".$rowData->gq_surname  }}</td>
                                         <td>{{ $rowData->gq_company }}</td>

@@ -48,6 +48,14 @@ class SubmittedDataController extends Controller
         return view('admin.submitted_data.contactus_list', ['Contactus' => $Contactus]);
     }
 
+    public function contactus_details($id)
+    {
+        $dataRow = Contactus::find($id);
+        return view('admin.submitted_data.contactus_details', [
+            'dataRow' => $dataRow,
+        ]);
+    }
+
     public function generate_csv_submitted(Request $request)
     {
         $inputs = $request->input();
@@ -72,8 +80,8 @@ class SubmittedDataController extends Controller
             $pdf = PDF::loadView('admin.submitted_data.single_appointment_pdf', ['appointment' => $appointment]);
             return $pdf->download(time() . '_order.pdf');
         } elseif ($flag == 'contact_us') {
-            $appointment = Contactus::find($id);
-            $pdf = PDF::loadView('admin.submitted_data.single_contactus_pdf', $appointment);
+            $dataRow = Contactus::find($id);
+            $pdf = PDF::loadView('admin.submitted_data.single_contactus_pdf',['dataRow'=>$dataRow]);
             return $pdf->download(time() . '_contact.pdf');
         } elseif ($flag == 'quote') {
             $quote = Quote::find($id);

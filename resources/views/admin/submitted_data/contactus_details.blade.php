@@ -1,3 +1,5 @@
+@extends('admin.layouts.app')
+@section('content')
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -12,7 +14,13 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="#">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -28,11 +36,21 @@
                             <div class="col-md-8">
                                 <h3 class="heading mb-4"><b>Subject:</b> Enquiry Shutters4UK ref - {{$dataRow->ref_no}}</h3>
                             </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-info" href="{{ route('contactus_list', ['tr'=>$dataRow->id]) }}">
+                                    << Back to list</a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-warning" href="{{ route('generate_pdf_single', ['flag' => 'contact_us', 'id' => $dataRow->id]) }}">
+                                    Download PDF
+                                </a>
+                            </div>
                         </div>
                         <table id="example1" class="table table-head-fixed text-nowrap">
-                            <!-- <tr>
+                            <tr>
                                 <td colspan="3">LOGO</td>
-                            </tr> -->
+
+                            </tr>
                             <tr>
                                 <td colspan="3">The following customer has been in contact requesting some information.</td>
                             </tr>
@@ -72,7 +90,7 @@
                             <tr>
                                 <td>Contact message:</td>
                                 <td colspan="2"> {{$dataRow->contact_message}}</td>
-                                
+
                             </tr>
 
                             <tr>
@@ -91,3 +109,7 @@
     </div>
 
 </div>
+
+
+
+@endsection

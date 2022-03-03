@@ -76,7 +76,8 @@
                                         <td title="{{ date('d-m-Y H:i', strtotime($rowData->date)) }}">
                                             {{ date('d-m-Y', strtotime($rowData->date)) }}
                                         </td>
-                                        <td>{{ $rowData->ref_no }}</td>
+                                        <td><a href="{{route('contactus_details',$rowData->id)}}">{{ $rowData->ref_no }}</a></td>
+ 
                                         <td>{{ ($rowData->department_name == '') ? 'Office Shutters UK' : $rowData->department_name }}</td>
                                         <td>{{ $rowData->contact_name  }}</td>
                                         <td>{{ $rowData->contact_email }}</td>
