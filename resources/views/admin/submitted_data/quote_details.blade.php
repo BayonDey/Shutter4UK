@@ -46,7 +46,7 @@
                                 </a>
                             </div>
                         </div>
-                        <table id="example1" class="table table-head-fixed text-nowrap">
+                        <table id="example1" class="table table-head-fixed text-nowrap table-striped">
                             <tr>
                                 <td colspan="3">LOGO</td>
 
