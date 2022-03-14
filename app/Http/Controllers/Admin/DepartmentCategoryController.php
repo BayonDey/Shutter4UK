@@ -11,7 +11,7 @@ class DepartmentCategoryController extends Controller
 {
     public function category_list()
     {
-        $dataList = DepartmentCategory::get();
+        $dataList = DepartmentCategory::orderBy('id', 'DESC')->get();
         return view('admin.department.category_list', [
             'dataList' => $dataList,
             'activeTR' => (isset($_GET['tr']) && ($_GET['tr'] > 0)) ? $_GET['tr'] : 0

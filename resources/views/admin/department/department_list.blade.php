@@ -44,7 +44,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Logo</th>
-                                    <th>Department Name</th>
+                                    <!-- <th>Department Name</th> -->
                                     <th>URL</th>
                                     <th>Postcode</th>
                                     <th>Action</th>
@@ -59,8 +59,8 @@
                                     <td>
                                         <img class="img-fluid dep_logo" id="img_name_pre" src="{{App\Utility::filePathShow(@$rowData->logo_image, 'departments')}}" width="50px">
                                     </td>
-                                    <td>{{ $rowData->name }}</td>
-                                    <td>{{ $rowData->url }}</td>
+                                    <td><a href="{{ route('dept_home',$rowData->url) }}" target="_blank">{{ $rowData->name }}</a></td>
+                                    <!-- <td>{{ $rowData->url }}</td> -->
                                     <td>{{ $rowData->postcode_name }}</td>
 
 

@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('', 'Frontend\HomeController@index');
+Route::get('/', 'Frontend\HomeController@index')->name('frontend_home');;
+Route::get('/{dep_link}', 'Frontend\HomeController@index')->name('dept_home');;
 Route::get('shop', 'Frontend\HomeController@shop');
 // Route::resource('dashboard', 'Admin\DashboardController');
 

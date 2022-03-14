@@ -31,7 +31,10 @@ class DepartmentController extends Controller
     {
         $postcodes = Postcode::orderBy('postcode')->get();
         $depCatList = DepartmentCategory::orderBy('category_name')->get();
-        return view('admin.department.department_form', ['postcodes' => $postcodes, 'depCatList' => $depCatList]);
+        return view('admin.department.department_form', [
+            'postcodes' => $postcodes, 'depCatList' => $depCatList,
+            'selectedCatIds' => [],
+        ]);
     }
 
     public function department_edit($id)

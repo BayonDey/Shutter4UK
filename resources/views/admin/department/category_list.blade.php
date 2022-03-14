@@ -56,8 +56,10 @@
                                 <tr id="TR__{{$rowData->id }}">
                                     <td>{{ $i + 1 }}</td>
 
-                                    <td>{{ $rowData->category_name }}</td>
-                                    <td>{{ $rowData->category_url }}</td> 
+                                    <td>
+                                        <a href="{{ route('dept_home',['dep_link'=>'main-store', 'cat'=>$rowData->category_url]) }}" target="_blank">{{ $rowData->category_name }}</a>
+                                    </td>
+                                    <td>{{ $rowData->category_url }}</td>
                                     <td>
                                         <div class="action-button-wrap">
                                             <label class="switch">
