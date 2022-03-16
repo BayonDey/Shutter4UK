@@ -25,11 +25,10 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-left">
-                <div class="user">
+                <!-- <div class="user">
                     <i class="fas fa-user-shield"></i>
                 </div>
-                <h2>Welcome to Shutters4UK admin</h2>
-                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
+                <h2>Welcome to Shutters4UK admin</h2> -->
             </div>
 
             <div class="card-body login-card-body">
@@ -50,41 +49,37 @@
                 </div>
                 @endif
                 <div class="login-logo">
-                    <!-- <a href="../../index2.html"><b>Admin</b>LTE</a> -->
                     <img src="{{ asset(config('app.logo')) }}" width="200px" alt="{{ config('app.name') }} " />
                 </div>
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Email: {{$user->email}}</p>
 
-                <form role="form" action="{{ action('Admin\LoginController@postLogin') }}" method="POST" enctype="multipart/form-data" id="cmsForm">
+                <form role="form" action="{{ route('reset_password_submit') }}" method="POST" enctype="multipart/form-data" id=" ">
                     {{ csrf_field() }}
+                    <input type="hidden" name="id" id="" value="{{$user->id}}">
+                    <input type="hidden" name="password_encode" id="" value="{{$user->password_encode}}">
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Email">
+                        <input type="password" name="password" class="form-control" placeholder="Enter new password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-key"></span>
                             </div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password_con" class="form-control" placeholder="Confirm password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-key"></span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
-                                <!-- <input type="checkbox" id="remember"> -->
-                                <!-- <label for="Forgot_password"> -->
-                                <a href="{{route('forgot_password')}}">Forgot password?</a>
-                                <!-- </label> -->
-                            </div>
+
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">UPDATE</button>
                         </div>
                         <!-- /.col -->
                     </div>

@@ -105,7 +105,7 @@ class UserController extends Controller
             $userData->is_subscribed = (isset($request->is_subscribed) ? 1 : 0);
             $userData->how_hear = $request->how_hear;
             if ($request->password != '') {
-                $userData->password_encode = $request->password;
+                // $userData->password_encode = $request->password;
                 $userData->password = Hash::make($request->password);
             }
 

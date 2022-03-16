@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/login', 'LoginController@login')->name('login');
     Route::post('/post-login', 'LoginController@postLogin');
+    Route::get('/forgot-password', 'LoginController@forgot_password')->name('forgot_password');
+    Route::post('/forgot_password_submit', 'LoginController@forgot_password_submit')->name('forgot_password_submit');
+
+    Route::get('/reset-password/{key}', 'LoginController@reset_password')->name('reset_password');
+    Route::post('/reset_password_submit', 'LoginController@reset_password_submit')->name('reset_password_submit');
+
     Route::middleware(['adminRoute:admin'])->group(function () {
         //////////////////////////////Get Route Start/////////////////////////////////
         Route::get('/reset', function () {
