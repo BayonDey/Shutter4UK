@@ -9,6 +9,8 @@ use App\Model\Contactus;
 use App\Model\Department;
 use App\Model\DepartmentCategory;
 use App\Model\DepartmentCategoryMap;
+use App\Model\DeptWhyShopImg;
+use App\Model\DeptWhyShopText;
 use App\Model\Postcode;
 use App\Model\Quote;
 use App\Utility;
@@ -34,6 +36,8 @@ class DepartmentController extends Controller
         return view('admin.department.department_form', [
             'postcodes' => $postcodes, 'depCatList' => $depCatList,
             'selectedCatIds' => [],
+            'dept_why_shop_text_ext' => [],
+            'dept_why_shop_img_ext' => [],
         ]);
     }
 
@@ -50,19 +54,29 @@ class DepartmentController extends Controller
                 $selectedCatIds[] = $row->category_id;
             }
         }
+        $dept_why_shop_text_ext = DeptWhyShopText::where('dept_id', $id)->get();
+        $dept_why_shop_img_ext = DeptWhyShopImg::where('dept_id', $id)->get();
         // dd($selectedCatIds);
         return view('admin.department.department_form', [
             'department' => $department,
             'postcodes' => $postcodes,
             'depCatList' => $depCatList,
             'selectedCatIds' => $selectedCatIds,
+            'dept_why_shop_text_ext' => $dept_why_shop_text_ext,
+            'dept_why_shop_img_ext' => $dept_why_shop_img_ext,
         ]);
     }
 
     public function department_store(Request $request)
     {
         $inputs = $request->input();
-        // dd($inputs);
+        $dept_why_shop_text = $request->dept_why_shop_text;
+        $dept_why_shop_img = $request->dept_why_shop_img;
+        $dept_whyShopImg = [];
+        if ($request->hasFile('dept_whyShopImg')) {
+            $dept_whyShopImg = $request->file('dept_whyShopImg');
+        }
+        // dd($dept_whyShopImg);
         $id = $request->id;
 
         $validate = $request->validate(
@@ -95,6 +109,11 @@ class DepartmentController extends Controller
         $fields['header_bg_color'] =  ($request->header_bg_color == null) ? '' : $request->header_bg_color;
         $fields['menu_bg_color'] =  ($request->menu_bg_color == null) ? '' : $request->menu_bg_color;
         $fields['footer_bg_color'] =  ($request->footer_bg_color == null) ? '' : $request->footer_bg_color;
+        $fields['header_caption_2'] =  ($request->header_caption_2 == null) ? '' : $request->header_caption_2;
+        $fields['header_caption_2_color'] =  ($request->header_caption_2_color == null) ? '' : $request->header_caption_2_color;
+        $fields['header_caption_3'] =  ($request->header_caption_3 == null) ? '' : $request->header_caption_3;
+        $fields['header_caption_3_color'] =  ($request->header_caption_3_color == null) ? '' : $request->header_caption_3_color;
+        $fields['header_3_desc'] =  ($request->header_3_desc == null) ? '' : $request->header_3_desc;
 
         if ($request->hasFile('logo_image')) {
             $fields['logo_image'] = Utility::saveImage($request->file('logo_image'), 'departments', 'logo_image');
@@ -137,6 +156,52 @@ class DepartmentController extends Controller
                 Session::flash('success', 'Department update successfully');
             }
         }
+
+        $dept_why_shop_text_ext = DeptWhyShopText::where('dept_id', $id)->count();
+        if ($dept_why_shop_text_ext != count($dept_why_shop_text)) {
+            DeptWhyShopText::where('dept_id', $id)->delete();
+            foreach ($dept_why_shop_text as $row) {
+                DeptWhyShopText::create(['dept_id' => $id, 'shop_text' => $row['shop_text'], 'icon_color' => $row['icon_color']]);
+            }
+        } else {
+            foreach ($dept_why_shop_text as $i => $row) {
+                DeptWhyShopText::where('id', $i)->update(['shop_text' => $row['shop_text'], 'icon_color' => $row['icon_color']]);
+            }
+        }
+
+
+        $dept_why_shop_img_ext = DeptWhyShopImg::where('dept_id', $id)->count();
+        if ($dept_why_shop_img_ext != count($dept_why_shop_img)) {
+            DeptWhyShopImg::where('dept_id', $id)->delete();
+            foreach ($dept_why_shop_img as $i => $row) {
+                $fildArr = [
+                    'dept_id' => $id,
+                    'caption' => $row['caption'],
+                    'alt_tag' => $row['alt_tag'],
+                    'link' => $row['link'],
+                    'description' => $row['description'],
+                ];
+                if (isset($dept_whyShopImg[$i])) {
+                    $fildArr['image'] = Utility::saveImage($dept_whyShopImg[$i], 'departments_why_shop_img', 'shop');
+                }
+
+                DeptWhyShopImg::create($fildArr);
+            }
+        } else {
+            foreach ($dept_why_shop_img as $i => $row) {
+                $fildArr = [
+                    'caption' => $row['caption'],
+                    'alt_tag' => $row['alt_tag'],
+                    'link' => $row['link'],
+                    'description' => $row['description'],
+                ];
+                if (isset($dept_whyShopImg[$i])) {
+                    $fildArr['image'] = Utility::saveImage($dept_whyShopImg[$i], 'departments_why_shop_img', 'shop');
+                }
+                DeptWhyShopImg::where('id', $i)->update($fildArr);
+            }
+        }
+
         return redirect()->route('department_list', ['tr' => $id]);
     }
 

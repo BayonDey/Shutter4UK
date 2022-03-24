@@ -15,6 +15,7 @@ class Department extends Model
         'logo_image', 'header_caption', 'header_caption_color', 'contact_no', 'contact_no_color',
         'contact_email', 'contact_email_color', 'opening_time', 'opening_time_color',
         'marquee_text', 'marquee_text_speed', 'marquee_text_color', 'header_bg_color', 'menu_bg_color', 'footer_bg_color',
+        'header_caption_2', 'header_caption_2_color', 'header_caption_3', 'header_caption_3_color', 'header_3_desc'
     ];
     protected $attributes = [
         'name' => '',
@@ -42,5 +43,10 @@ class Department extends Model
         'header_bg_color' => '',
         'menu_bg_color' => '',
         'footer_bg_color' => '',
+        'header_caption_2' => '',
+        'header_caption_2_color' => '',
+        'header_caption_3' => '',
+        'header_caption_3_color' => '',
+        'header_3_desc' => '',
     ];
 }

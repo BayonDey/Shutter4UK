@@ -175,6 +175,41 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
+                                                    <span class="label-title"> Header caption 2</span>
+                                                    <input type="text" name="header_caption_2" class="form-control" value="{{@$department->header_caption_2}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <span class="label-title"> Header caption 2 color</span>
+                                                    <input type="color" name="header_caption_2_color" class="form-control" value="{{@$department->header_caption_2_color}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <span class="label-title"> Header caption 3</span>
+                                                    <input type="text" name="header_caption_3" class="form-control" value="{{@$department->header_caption_3}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <span class="label-title"> Header caption 3 color</span>
+                                                    <input type="color" name="header_caption_3_color" class="form-control" value="{{@$department->header_caption_3_color}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <span class="label-title"> Header 3 Description</span>
+                                                    <textarea name="header_3_desc" class="form-control" rows="4">{{@$department->header_3_desc}}</textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
                                                     <span class="label-title"> Contact email</span>
                                                     <input type="text" name="contact_email" class="form-control" value="{{@$department->contact_email}}">
                                                 </div>
@@ -250,6 +285,291 @@
 
                                     <hr>
 
+                                    <h3 class="heading mb-4">Manage Why Shop</h3>
+                                    <?php
+                                    if (count($dept_why_shop_img_ext) == 0) {
+                                    ?>
+
+                                        <div class="row">
+                                            <h4 class="heading mb-4">First Image</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Caption</span>
+                                                        <input type="text" name="dept_why_shop_img[0][caption]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Link</span>
+                                                        <input type="text" name="dept_why_shop_img[0][link]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label-title">Image </label>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="file-upload-sec">
+                                                                    <input type="file" name="dept_whyShopImg[0]" id="img_name0" accept="image/*" hidden="">
+                                                                    <i class="fas fa-cloud-upload-alt"></i>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <img class="img-fluid" id="img_name0_pre" src="{{App\Utility::filePathShow(@$department->logo_image, 'departments')}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Alt Tag</span>
+                                                        <input type="text" name="dept_why_shop_img[0][alt_tag]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Description</span>
+                                                        <textarea name="dept_why_shop_img[0][description]" id="" class="form-control" cols="30" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h4 class="heading mb-4">Second Image</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Caption</span>
+                                                        <input type="text" name="dept_why_shop_img[1][caption]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Link</span>
+                                                        <input type="text" name="dept_why_shop_img[1][link]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label-title">Image </label>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="file-upload-sec">
+                                                                    <input type="file" name="dept_whyShopImg[1]" id="img_name1" accept="image/*" hidden="">
+                                                                    <i class="fas fa-cloud-upload-alt"></i>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <img class="img-fluid" id="img_name1_pre" src="{{App\Utility::filePathShow(@$department->logo_image, 'departments')}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Alt Tag</span>
+                                                        <input type="text" name="dept_why_shop_img[1][alt_tag]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Description</span>
+                                                        <textarea name="dept_why_shop_img[1][description]" id="" class="form-control" cols="30" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h4 class="heading mb-4">Third Image</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Caption</span>
+                                                        <input type="text" name="dept_why_shop_img[2][caption]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Link</span>
+                                                        <input type="text" name="dept_why_shop_img[2][link]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label-title">Image </label>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="file-upload-sec">
+                                                                    <input type="file" name="dept_whyShopImg[2]" id="img_name2" accept="image/*" hidden="">
+                                                                    <i class="fas fa-cloud-upload-alt"></i>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <img class="img-fluid" id="img_name2_pre" src="{{App\Utility::filePathShow(@$department->logo_image, 'departments')}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Alt Tag</span>
+                                                        <input type="text" name="dept_why_shop_img[2][alt_tag]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Description</span>
+                                                        <textarea name="dept_why_shop_img[2][description]" id="" class="form-control" cols="30" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    } else {
+                                        foreach ($dept_why_shop_img_ext as $i => $row) {
+                                        ?>
+
+                                            <div class="row">
+                                                <h4 class="heading mb-4">Manage Image {{$i+1}}</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <span class="label-title">Caption</span>
+                                                            <input type="text" name="dept_why_shop_img[{{$row->id}}][caption]" class="form-control" value="{{@$row->caption}}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <span class="label-title">Link</span>
+                                                            <input type="text" name="dept_why_shop_img[{{$row->id}}][link]" class="form-control" value="{{@$row->link}}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="label-title">Image </label>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label class="file-upload-sec">
+                                                                        <input type="file" name="dept_whyShopImg[{{$row->id}}]" id="img_name{{$i}}" accept="image/*" hidden="">
+                                                                        <i class="fas fa-cloud-upload-alt"></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <img class="img-fluid" id="img_name{{$i}}_pre" src="{{App\Utility::filePathShow(@$row->image, 'departments_why_shop_img')}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <span class="label-title">Alt Tag</span>
+                                                            <input type="text" name="dept_why_shop_img[{{$row->id}}][alt_tag]" class="form-control" value="{{@$row->alt_tag}}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <span class="label-title">Description</span>
+                                                            <textarea name="dept_why_shop_img[{{$row->id}}][description]" id="" class="form-control" cols="30" rows="2">{{@$row->description}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+
+                                    <hr>
+
+                                    <h3 class="heading mb-4">Manage Why Shop Text</h3>
+
+                                    <div class="row">
+                                        <?php
+                                        if (count($dept_why_shop_text_ext) == 0) {
+                                        ?>
+                                            <div class="col-md-6 row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Text-1</span>
+                                                        <input type="text" name="dept_why_shop_text[0][shop_text]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Tic Color</span>
+                                                        <input type="color" name="dept_why_shop_text[0][icon_color]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Text-2</span>
+                                                        <input type="text" name="dept_why_shop_text[1][shop_text]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Tic Color</span>
+                                                        <input type="color" name="dept_why_shop_text[1][icon_color]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Text-3</span>
+                                                        <input type="text" name="dept_why_shop_text[2][shop_text]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Tic Color</span>
+                                                        <input type="color" name="dept_why_shop_text[2][icon_color]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Text-4</span>
+                                                        <input type="text" name="dept_why_shop_text[3][shop_text]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <span class="label-title">Tic Color</span>
+                                                        <input type="color" name="dept_why_shop_text[3][icon_color]" class="form-control" value="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <?php
+                                        } else {
+                                            foreach ($dept_why_shop_text_ext as $i => $row) {
+                                            ?>
+                                                <div class="col-md-6 row">
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <span class="label-title">Text-{{$i+1}}</span>
+                                                            <input type="text" name="dept_why_shop_text[{{$row->id}}][shop_text]" class="form-control" value="{{$row->shop_text}}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <span class="label-title">Tic Color</span>
+                                                            <input type="color" name="dept_why_shop_text[{{$row->id}}][icon_color]" class="form-control" value="{{$row->icon_color}}" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+
+                                    <hr>
                                     <h3 class="heading mb-4">Manage Meta Tag</h3>
                                     <div class="row">
 
@@ -294,6 +614,9 @@
     $(document).ready(function() {
 
         imagePreview(img_name, img_name_pre);
+        imagePreview(img_name0, img_name0_pre);
+        imagePreview(img_name1, img_name1_pre);
+        imagePreview(img_name2, img_name2_pre);
 
         function imagePreview(imgId, imgPreviewId) {
             imgId.onchange = evt => {
