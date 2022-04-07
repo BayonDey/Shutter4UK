@@ -26,8 +26,8 @@
         </li>
 
         @if(App\Model\UserPermission::checkPermission('admin_manager') > 0)
-        <li class="nav-item {{ in_array($segment2, ['download-product-image', 'appointment-time','department', 'generate-report','dep-category','dep-product','dep-slider']) ? 'menu-open' : '' }} ">
-          <a href="#" class="nav-link {{ in_array($segment2, ['download-product-image', 'appointment-time','department', 'generate-report','dep-category','dep-product','dep-slider']) ? 'active' : '' }} ">
+        <li class="nav-item {{ in_array($segment2, ['download-product-image', 'appointment-time','department', 'generate-report','dep-category','dep-product','pg-slider']) ? 'menu-open' : '' }} ">
+          <a href="#" class="nav-link {{ in_array($segment2, ['download-product-image', 'appointment-time','department', 'generate-report','dep-category','dep-product','pg-slider']) ? 'active' : '' }} ">
             <i class="nav-icon fas fa-laptop"></i>
             <p>ADMIN MANAGER <i class="right fas fa-angle-left"></i></p>
           </a>
@@ -71,7 +71,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{ route('slider_list') }}" class="nav-link {{ (in_array($segment2, ['dep-slider'])) ? 'active' : '' }}">
+              <a href="{{ route('pg_slider_list') }}" class="nav-link {{ (in_array($segment2, ['pg-slider'])) ? 'active' : '' }}">
                 <i class="fas fa-images nav-icon"></i>
                 <p>Department Sliders</p>
               </a>

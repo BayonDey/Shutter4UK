@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\DepartmentCategory;
+use App\Utility;
+use Hamcrest\Util;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -51,6 +53,12 @@ class DepartmentCategoryController extends Controller
         $fields['meta_title'] = ($request->meta_title == null) ? '' : $request->meta_title;
         $fields['meta_description'] = ($request->meta_description == null) ? '' : $request->meta_description;
 
+        if ($request->hasFile('category_logo')) {
+            $fields['category_logo'] = Utility::saveImage($request->file('category_logo'), 'department_category', 'category_logo');
+        }
+        if ($request->hasFile('category_image')) {
+            $fields['category_image'] = Utility::saveImage($request->file('category_image'), 'department_category', 'category_image');
+        }
         if ($request->id == null) {
             $fields['created_date'] = date('Y-m-d H:i:s');
             $create = DepartmentCategory::create($fields);
@@ -60,9 +68,17 @@ class DepartmentCategoryController extends Controller
             }
         } else {
             $id = $request->id;
-
+            $rowData = DepartmentCategory::find($id);
+            $old_category_logo = $rowData->category_logo;
+            $old_category_image = $rowData->category_image;
             $update = DepartmentCategory::where('id', $id)->update($fields);
             if ($update) {
+                if (($old_category_logo != '') && ($request->hasFile('category_logo'))) {
+                    Utility::unlinkFile($old_category_logo, 'department_category');
+                }
+                if (($old_category_image != '') && ($request->hasFile('category_image'))) {
+                    Utility::unlinkFile($old_category_image, 'department_category');
+                }
                 Session::flash('success', 'Category update successfully');
             }
         }
@@ -76,6 +92,19 @@ class DepartmentCategoryController extends Controller
         $row = DepartmentCategory::find($id);
         $promote_front = ($row->promote_front == 'Y') ? 'N' : 'Y';
         $update = DepartmentCategory::where('id', $id)->update(['promote_front' => $promote_front]);
+        if ($update) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+
+
+    public function show_in_main_home($id)
+    {
+        $row = DepartmentCategory::find($id);
+        $show_in_main_home = ($row->show_in_main_home == 'Y') ? 'N' : 'Y';
+        $update = DepartmentCategory::where('id', $id)->update(['show_in_main_home' => $show_in_main_home]);
         if ($update) {
             echo 1;
         } else {

@@ -43,9 +43,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Logo</th>
+                                    <th>Image</th>
                                     <th>Category Name</th>
                                     <th>URL</th>
                                     <th>Promote front</th>
+                                    <th>Main Home</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,7 +58,13 @@
                                 @foreach($dataList as $i => $rowData)
                                 <tr id="TR__{{$rowData->id }}">
                                     <td>{{ $i + 1 }}</td>
+                                    <td>
+                                        <img src="{{ App\Utility::filePathShow($rowData->category_logo, 'department_category') }}" class="blogPostImg" width="40px">
+                                    </td>
 
+                                    <td>
+                                        <img src="{{ App\Utility::filePathShow($rowData->category_image, 'department_category') }}" class="blogPostImg" width="60px">
+                                    </td>
                                     <td>
                                         <a href="{{ route('dept_home',['dep_link'=>'main-store', 'cat'=>$rowData->category_url]) }}" target="_blank">{{ $rowData->category_name }}</a>
                                     </td>
@@ -68,7 +77,9 @@
                                             </label>
                                         </div>
                                     </td>
-
+                                    <td>
+                                        <input type="checkbox" class="show_in_main_home" id="check__{{$rowData->id }}" {{ ($rowData->show_in_main_home == 'Y') ? 'checked' : '' }}>
+                                    </td>
                                     <td>
                                         <div class="action-button-wrap">
                                             <a data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('category_edit', $rowData->id ) }}" class="btn btn-outline-info"><i class="fa fa-edit"></i></a>
@@ -88,6 +99,24 @@
 
 </div>
 
+<div class="modal fade" id="showImgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title assignContentModalLabel" id="exampleModalLabel">View Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <img src="" class="showImgInModal" alt="" width="100%">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @endsection
@@ -122,6 +151,43 @@
                 }
             });
         });
+
+
+        $(".show_in_main_home").click(function() {
+            var thisId = $(this).attr('id');
+            var fdId = thisId.split('__')[1];
+            $.ajax({
+                type: 'GET',
+                url: base_url + '/show_in_main_home/' + fdId,
+                data: {},
+                dataType: "json",
+
+                success: function(returnData) {
+                    if (returnData == 1) {
+                        $.alert({
+                            title: 'Success',
+                            content: 'Update successfully',
+                        });
+                    } else {
+                        $.alert({
+                            title: 'Warning!',
+                            content: 'Something was wrong',
+                        });
+                    }
+
+                }
+            });
+        });
+
+
+        //=== START:: show image in modal =====//
+        $('body').on('click', '.blogPostImg', function() {
+            var imgSrc = $(this).attr('src');
+            $(".showImgInModal").attr("src", imgSrc);
+            $("#showImgModal").modal('show');
+        });
+        //=== END:: show image in modal =====//
+
 
         var activeTR = '<?= @$activeTR ?>';
         $("#TR__" + activeTR).addClass('activeTR');

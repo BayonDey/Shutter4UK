@@ -394,12 +394,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/dep-category/create', 'DepartmentCategoryController@category_create')->name('category_create');
         Route::get('/dep-category/edit/{id}', 'DepartmentCategoryController@category_edit')->name('category_edit');
         Route::get('/promote_front_category/{id}', 'DepartmentCategoryController@promote_front_category')->name('promote_front_category');
+        Route::get('/show_in_main_home/{id}', 'DepartmentCategoryController@show_in_main_home')->name('show_in_main_home');
         Route::post('/category_store', 'DepartmentCategoryController@category_store')->name('category_store');
         
         Route::get('/dep-product/list', 'DepartmentProductController@product_list')->name('product_list');
         Route::get('/dep-product/create', 'DepartmentProductController@product_create')->name('product_create');
         Route::get('/dep-product/edit/{id}', 'DepartmentProductController@product_edit')->name('product_edit');
         Route::get('/promote_front_product/{id}', 'DepartmentProductController@promote_front_product')->name('promote_front_product');
+        Route::get('/product_show_in_main_home/{id}', 'DepartmentProductController@product_show_in_main_home')->name('product_show_in_main_home');
         Route::get('/dep-product-img-del/{id}', 'DepartmentProductController@dep_product_img_del')->name('dep_product_img_del');
         Route::post('/product_store', 'DepartmentProductController@product_store')->name('product_store');
       
@@ -409,6 +411,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/dep-slider/delete/{id}', 'DepartmentSliderController@slider_delete')->name('slider_delete');
         Route::post('/slider_store', 'DepartmentSliderController@slider_store')->name('slider_store');
       
+        Route::get('/pg-slider/list', 'DepartmentSliderController@pg_slider_list')->name('pg_slider_list');
+        Route::get('/pg-slider/create', 'DepartmentSliderController@pg_slider_create')->name('pg_slider_create');
+        Route::get('/pg-slider/edit/{id}', 'DepartmentSliderController@pg_slider_edit')->name('pg_slider_edit');
+        Route::get('/pg-slider/change_status/{id}', 'DepartmentSliderController@pg_slider_change_status')->name('pg_slider_change_status');
+        Route::get('/slider_show_in_main_home/{id}', 'DepartmentSliderController@slider_show_in_main_home')->name('slider_show_in_main_home');
+        Route::get('/pg-slider/delete/{id}', 'DepartmentSliderController@pg_slider_delete')->name('pg_slider_delete');
+        Route::post('/pg_slider_store', 'DepartmentSliderController@pg_slider_store')->name('pg_slider_store');
+        Route::post('/middle_pg_slider_store', 'DepartmentSliderController@middle_pg_slider_store')->name('middle_pg_slider_store');
+
+
+
+
         Route::get('/dep-client/{id}', 'DepartmentController@client_details')->name('client_details');
         Route::post('/client_details_save', 'DepartmentController@client_details_save')->name('client_details_save');
         

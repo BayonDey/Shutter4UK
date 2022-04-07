@@ -23,7 +23,7 @@ class DepartmentProductController extends Controller
             ->leftjoin('department_category as c', 'c.id', '=', 'p.product_cat_id')
             ->leftjoin('department_product_map as dpm', 'dpm.product_id', '=', 'p.id')
             ->leftjoin('departments as d', 'd.id', '=', 'dpm.department_id')
-            ->select('p.*',  'c.category_name', DB::raw('group_concat(d.name) as dep_names'))
+            ->select('p.*',  'c.category_name', DB::raw('group_concat(d.name SEPARATOR  ",</br>") as dep_names'))
             ->where('p.status', '1')->groupBy('p.id')->get();
         // dd($dataList);
         return view('admin.department.product_list', [
@@ -189,6 +189,17 @@ class DepartmentProductController extends Controller
         $row = DepartmentProduct::find($id);
         $promote_front = ($row->promote_front == 'Y') ? 'N' : 'Y';
         $update = DepartmentProduct::where('id', $id)->update(['promote_front' => $promote_front]);
+        if ($update) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+    public function product_show_in_main_home($id)
+    {
+        $row = DepartmentProduct::find($id);
+        $show_in_main_home = ($row->show_in_main_home == 'Y') ? 'N' : 'Y';
+        $update = DepartmentProduct::where('id', $id)->update(['show_in_main_home' => $show_in_main_home]);
         if ($update) {
             echo 1;
         } else {

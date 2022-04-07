@@ -48,6 +48,7 @@
                                     <th>Product Category</th>
                                     <th>Departments</th>
                                     <th>Promote front</th>
+                                    <th>Main Home</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -62,7 +63,7 @@
                                     </td>
                                     <td>{{ $rowData->product_title }}</td>
                                     <td>{{ $rowData->category_name }}</td>
-                                    <td><span style="width: 30px">{{ $rowData->dep_names }}</span></td>
+                                    <td><span style="width: 30px">{!! $rowData->dep_names !!}</span></td>
                                     <td>
                                         <div class="action-button-wrap">
                                             <label class="switch">
@@ -72,6 +73,9 @@
                                         </div>
                                     </td>
 
+                                    <td>
+                                        <input type="checkbox" class="show_in_main_home" id="check__{{$rowData->id }}" {{ ($rowData->show_in_main_home == 'Y') ? 'checked' : '' }}>
+                                    </td>
                                     <td>
                                         <div class="action-button-wrap">
                                             <a data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('product_edit', $rowData->id ) }}" class="btn btn-outline-info"><i class="fa fa-edit"></i></a>
@@ -154,6 +158,31 @@
             });
         });
 
+        $(".show_in_main_home").click(function() {
+            var thisId = $(this).attr('id');
+            var fdId = thisId.split('__')[1];
+            $.ajax({
+                type: 'GET',
+                url: base_url + '/product_show_in_main_home/' + fdId,
+                data: {},
+                dataType: "json",
+
+                success: function(returnData) {
+                    if (returnData == 1) {
+                        $.alert({
+                            title: 'Success',
+                            content: 'Update successfully',
+                        });
+                    } else {
+                        $.alert({
+                            title: 'Warning!',
+                            content: 'Something was wrong',
+                        });
+                    }
+
+                }
+            });
+        });
         var activeTR = '<?= @$activeTR ?>';
         $("#TR__" + activeTR).addClass('activeTR');
     });

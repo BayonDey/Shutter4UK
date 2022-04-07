@@ -78,6 +78,45 @@
                                                     <textarea name="category_description" class="form-control ckeditor " id="" cols="30" rows="3">{{@$dataRow->category_description}}</textarea>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-6 pg-div type_1 type_2">
+                                                <div class="form-group">
+                                                    <label class="label-title">Category Logo
+                                                        <!-- <span class="text-danger"> (Width:300px)</span> -->
+                                                    </label>
+
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="file-upload-sec">
+                                                                <input type="file" name="category_logo" id="category_logo" accept="image/*" hidden="">
+                                                                <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <img class="img-fluid" id="category_logo_pre" src="{{App\Utility::filePathShow(@$dataRow->category_logo, 'department_category')}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pg-div type_1 type_2">
+                                                <div class="form-group">
+                                                    <label class="label-title">Category Image
+                                                        <!-- <span class="text-danger"> (Width:300px)</span> -->
+                                                    </label>
+
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="file-upload-sec">
+                                                                <input type="file" name="category_image" id="category_image" accept="image/*" hidden="">
+                                                                <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <img class="img-fluid" id="category_image_pre" src="{{App\Utility::filePathShow(@$dataRow->category_image, 'department_category')}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <span class="label-title">Meta title</span>
@@ -91,13 +130,13 @@
 
                                                     <textarea name="meta_description" class="form-control  " id="" cols="30" rows="3">{{@$dataRow->meta_description}}</textarea>
                                                 </div>
-                                            </div> 
- 
+                                            </div>
+
                                         </div>
 
                                     </div>
 
-                                    <hr> 
+                                    <hr>
                                     <div class="button-action justify-content-end">
                                         <a href="{{route('category_list' )}}">
                                             <button type="button" class="btn btn-default mr-2">Cancel</button>
@@ -124,7 +163,19 @@
 @section('page-script')
 <script type="text/javascript">
     $(document).ready(function() {
+ 
 
+        imagePreview(category_logo, category_logo_pre);
+        imagePreview(category_image, category_image_pre);
+
+        function imagePreview(imgId, imgPreviewId) {
+            imgId.onchange = evt => {
+                const [file] = imgId.files
+                if (file) {
+                    imgPreviewId.src = URL.createObjectURL(file)
+                }
+            }
+        }
     });
 </script>
 @stop
